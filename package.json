@@ -4,6 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +16,15 @@
   "bugs": {
     "url": "https://github.com/honoratod/descubra-o-assassino/issues"
   },
-  "homepage": "https://github.com/honoratod/descubra-o-assassino#readme"
+  "homepage": "https://github.com/honoratod/descubra-o-assassino#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "core-js": "^2.4.1",
+    "cors": "^2.8.4",
+    "express": "^4.16.4",
+    "nodemon": "^1.18.4"
+  },
+  "devDependencies": {
+    "cors": "^2.8.4"
+  }
 }
