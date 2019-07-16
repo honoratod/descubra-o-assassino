@@ -10,7 +10,7 @@ var solucao = [1, 2, 3];
  */
 function investigar() {
 
-    //Realiza cópia do Map original para facilitar
+    //Realiza cópia do Map original para trabalhar as tentativas
     let possiveisSuspeitosMap = new Map(suspeitos.suspeitosCollection);//[1 , 2, 3, 4, 5, 6];
     let possiveisLocaisMap = new Map(locais.locaisCollection);//[1 , 2, 3, 4, 5, 6, 7, 8, 9, 10];
     let possiveisArmasMap = new Map(armas.armasCollection);//[1 , 2, 3, 4, 5, 6];
@@ -32,21 +32,33 @@ function investigar() {
         + " Arma=" + armas.armasCollection.get(solucao[2]));
 
     let culpadoEncontrado = false;
-    listaPalpites.push(palpite);
+    listaPalpites.push(criarCrime(palpite, listaPalpites.length + 1));
     // return buscaCulpado(palpite);
     while (!culpadoEncontrado) {
-        console.log("Palpite #" + listaPalpites.length +"  Susp=" + palpite[0] + " Local=" + palpite[1] + " Arma=" + palpite[2]);
+        console.log("Palpite #" + listaPalpites.length + "  Susp=" + palpite[0] + " Local=" + palpite[1] + " Arma=" + palpite[2]);
         let validacao = buscaCulpado(palpite);
 
         if (validacao == 0) {
             culpadoEncontrado = true;
+            //Exibe no console os resultados da investigação
             console.log("---------------------------------");
             console.log("O total de tentativas foi " + listaPalpites.length);
             console.log("Culpado encontrado!");
             console.log("O assassino foi " + suspeitos.suspeitosCollection.get(palpite[0]));
             console.log("O local foi " + locais.locaisCollection.get(palpite[1]));
             console.log("A arma do crime foi " + armas.armasCollection.get(palpite[2]));
-            return listaPalpites.length;
+
+            //Cria um objeto para ser retornado
+            let jsonRetorno = {};
+            let crime = {};
+            let palpites = listaPalpites;
+            crime = criarCrime(palpite);
+
+            jsonRetorno['qtd-tentativas'] = listaPalpites.length;
+            jsonRetorno['crime'] = crime;
+            jsonRetorno['palpites'] = palpites;
+
+            return jsonRetorno;
         } else {
             //Valida o retorno e atualiza a lista correspondente
             //assassiona está incorreto 
@@ -65,7 +77,12 @@ function investigar() {
                 possiveisArmasList = util.preencheValoresMapa(possiveisArmasMap);
                 palpite = atualizaPalpite(possiveisArmasList, palpite, 2);
             }
-            listaPalpites.push(palpite);
+
+            crime = {};
+            crime['suspeito'] = suspeitos.suspeitosCollection.get(palpite[0]);
+            crime['local'] = locais.locaisCollection.get(palpite[1]);
+            crime['arma'] = armas.armasCollection.get(palpite[2]);
+            listaPalpites.push(criarCrime(palpite, listaPalpites.length + 1));
         }
 
     }
@@ -75,7 +92,7 @@ function investigar() {
 /**
  * Testa o chute inicial
  * retorna 0 se estiver correto
- * retorna 1 se o assassiona está incorreto
+ * retorna 1 se o assassio está incorreto
  * retorna 2 se o local está incorreto;
  * retorna 3 se a arma está incorreta
  * Caso mais de um estejam incorretos, retorna um dos valores aleatoriamente.
@@ -95,6 +112,7 @@ function buscaCulpado(palpite) {
         validacaoPalpite.push(3);
     }
 
+    //Caso os palpites estejam todos corretos, retorna 0
     if (validacaoPalpite.length == 0) {
         return 0;
     } else {
@@ -129,6 +147,22 @@ function atualizaPalpite(possibilidades, palpite, indice) {
     let indiceValorRetorno = util.obterNumeroAleatorio(0, possibilidades.length - 1);
     palpite[indice] = possibilidades[indiceValorRetorno];
     return palpite;
+}
+
+/**
+ * cria o objeto de um crime
+ */
+function criarCrime(palpite, indice = null) {
+
+    crime = {};
+    if(indice){
+        crime['posicao'] = indice;
+    }
+    crime['suspeito'] = suspeitos.suspeitosCollection.get(palpite[0]);
+    crime['local'] = locais.locaisCollection.get(palpite[1]);
+    crime['arma'] = armas.armasCollection.get(palpite[2]);
+
+    return crime;
 }
 
 module.exports.investigar = investigar;

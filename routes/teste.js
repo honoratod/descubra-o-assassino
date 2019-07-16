@@ -1,3 +1,4 @@
+//Classe apenas para testes de requisição
 var express = require('express');
 var router = express.Router();
 const suspeitos = require("../data/suspeitos");
@@ -10,7 +11,7 @@ router.get("/", function (req, res) {
 
 router.get("/suspeitos", function (req, res) {
 
-    let teste = { 'a' : investigacao.investigar()};
+    let teste = { 'a' : 'b'};
 
     res.status(200).json(teste);
 });

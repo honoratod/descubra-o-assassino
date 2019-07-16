@@ -4,6 +4,7 @@ var cors = require('cors');
 
 //rotas
 var teste = require('./routes/teste');
+var investigacao = require('./routes/investigacao');
 
 //Aqui o 'app' irá pegar as instâncias das Rotas do Express
 var app = express();
@@ -25,6 +26,7 @@ var router = express.Router();
 
 //Adiciona utilização das rotas
 router.use('/teste',  teste);
+router.use('/investigacao',  investigacao);
 
 /* Prefixo para as rotas */
 app.use('/v1/descubra-o-assassino', router);
