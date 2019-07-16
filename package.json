@@ -1,0 +1,19 @@
+{
+  "name": "descubra-o-assassino",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/honoratod/descubra-o-assassino.git"
+  },
+  "author": "Diogo Honorato",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/honoratod/descubra-o-assassino/issues"
+  },
+  "homepage": "https://github.com/honoratod/descubra-o-assassino#readme"
+}
