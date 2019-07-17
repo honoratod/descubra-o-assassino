@@ -3,8 +3,8 @@ var bodyParser = require("body-parser");
 var cors = require('cors');
 
 //rotas
-var teste = require('./routes/teste');
-var investigacao = require('./routes/investigacao');
+var teste = require('./api/routes/teste');
+var investigacao = require('./api/routes/investigacao');
 
 //Aqui o 'app' irá pegar as instâncias das Rotas do Express
 var app = express();
