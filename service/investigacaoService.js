@@ -36,7 +36,9 @@ function investigar() {
     listaPalpites.push(criarCrime(palpite, listaPalpites.length + 1));
     // return buscaCulpado(palpite);
     while (!culpadoEncontrado) {
-        console.log("Palpite #" + listaPalpites.length + "  Susp=" + palpite[0] + " Local=" + palpite[1] + " Arma=" + palpite[2]);
+        console.log("Palpite #" + listaPalpites.length + "  Susp=" + suspeitos.suspeitosCollection.get(palpite[0])
+            + " Local=" + locais.locaisCollection.get(palpite[1]) + " Arma=" + armas.armasCollection.get(palpite[2]));
+            
         let validacao = buscaCulpado(palpite, solucao);
 
         if (validacao == 0) {
@@ -157,7 +159,7 @@ function atualizaPalpite(possibilidades, palpite, indice) {
 function criarCrime(palpite, indice = null) {
 
     crime = {};
-    if(indice){
+    if (indice) {
         crime['posicao'] = indice;
     }
     crime['suspeito'] = suspeitos.suspeitosCollection.get(palpite[0]);
