@@ -1,6 +1,6 @@
 # descubra-o-assassino
 
-Api de consulta de resolução de para o problema de investigação proposto. Desenvolvida em Node.js (v10) / express<br><br>
+Api de consulta de resolução de para o problema de investigação proposto. Desenvolvida em Node.js (v10) / express e Angular (v7)<br><br>
 Para iniciar a aplicação, executar comandos:<br>
 <b>npm install</b> (para instalar as dependências), este processo pode levar alguns minutos, pois após instalar as dependências do node e Angular, realiza o build da aplicação Angular.<br>
 <b>npm start</b> (para iniciar)
