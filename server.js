@@ -22,11 +22,20 @@ var server = app.listen(process.env.DOA_PORT || 8080, function () {
 
 var router = express.Router();
 
+//Adiciona os arquivos da build do angular como static
+var distDir = __dirname + "/dist/descubra-o-assassino/";
+app.use(express.static(distDir));
+
 // Criação da API
 
 //Adiciona utilização das rotas
 router.use('/teste',  teste);
 router.use('/investigacao',  investigacao);
+
+//Rota para as páginas do angular
+ app.use('/pages/*',function(req, res) {
+   res.sendFile(__dirname + '/dist/descubra-o-assassino/index.html');
+ });
 
 /* Prefixo para as rotas */
 app.use('/v1/descubra-o-assassino', router);

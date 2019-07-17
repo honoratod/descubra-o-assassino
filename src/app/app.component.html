@@ -1,0 +1,30 @@
+<div class="mat-elevation-z8" style="margin: 5%">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        <h2>Investigação</h2>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="button-row">
+        <button mat-raised-button color="primary" (click)="investigar()">
+          <mat-icon>search</mat-icon>Solucionar crime aleatório
+        </button>
+      </div>
+      <div *ngIf="crimeSolucionado" style=" padding: 5px; margin: 5%;border: 0.5px; border-style: solid; border-color: lightgray">
+        <h2>Crime solucionado em {{qtdTentativas}} tentativas</h2>
+        <mat-list>
+          <mat-list-item *ngFor="let palpite of palpites; last as last">
+            <mat-icon mat-list-icon *ngIf="!last" style="color: red">close</mat-icon>
+            <mat-icon mat-list-icon *ngIf="last" style="color: green">check_circle_outline</mat-icon>
+            <h3 mat-line>{{palpite.posicao}}</h3>
+            <p mat-line> Assassino : <b>{{palpite.suspeito}}</b> </p>
+            <p mat-line> Local : <b>{{palpite.local}} </b></p>
+            <p mat-line> Arma do crime : <b>{{palpite.arma}} </b></p>
+            <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
+          </mat-list-item>
+        </mat-list>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
