@@ -5,6 +5,8 @@ Para iniciar a aplicação, executar comandos:<br>
 <b>npm install</b> (para instalar as dependências), este processo pode levar alguns minutos, pois após instalar as dependências do node e Angular, realiza o build da aplicação Angular.<br>
 <b>npm start</b> (para iniciar)
 
+Arquivo principal da aplicação: <b>server.js</b>
+
 Para acessar via requisição GET
 http://localhost:8080/v1/descubra-o-assassino/investigacao/realizar-investigacao
 
